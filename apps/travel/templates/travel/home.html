@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'travel/css/style.css' %}">
+
+        <title>Travel Dashboard</title>
+    </head>
+    <body>
+        <div id = 'wrapper'>
+
+            <h2>Hey, {{user.first_name}}!</h2>
+            <div class = 'user_trip'>
+                <h3>Your Trip Schedules</h3>
+                <table>
+                    <tr>
+                        <th>Destination</th> 
+                        <th>Travel Start Date</th>
+                        <th>Travel End Date</th>
+                        <th>Plan</th>
+                    </tr>
+
+                    {% for key in user_trips %}
+                    <tr>
+                        <th><a href='/destination/{{trip.id}}'>{{key.destination}}</a></th>
+                        <th>{{key.date_start}}</th>
+                        <th>{{key.date_end}}</th>
+                        <th>{{key.description}}</th>
+                        <th>{{key.time}}</th>
+                    </tr>
+                    {%endfor%}
+
+                </table>
+            </div>
+
+
+            <div class ='other_trip'>
+                <h3>Other User's Travel Plans</h3>
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Destination</th> 
+                        <th>Travel Start Date</th>
+                        <th>Travel End Date</th>
+                        <th>Do You Want to Join?</th>
+                    </tr>
+
+                    {% for key in other_trips %}
+                    <tr>
+                        <th>{{key.primaryuser.first_name}}</th>
+                        <th><a href='/destination/{{key.id}}'>{{key.destination}}</a></th>
+                        <th>{{key.date_start}}</th>
+                        <th>{{key.date_end}}</th>
+                        <th><a href='/join/{{key.id}}'>Join</a></th>
+                    </tr>
+
+                    {% endfor %}
+                </table>
+
+
+            </div>
+
+            <p><a href='/add'>Add a Trip</a></p>
+            <a href="/logout" type = 'button'>Logout</a>
+
+
+
+
+
+
+
+
+
+        </div>
+    </body>
+</html>

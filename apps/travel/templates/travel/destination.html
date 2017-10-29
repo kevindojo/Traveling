@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Final Destination</title>
+    </head>
+    <body>
+        <div id = 'wrapper'>
+
+            <div class = 'navbar'>
+                <a href="/home">Dashboard</a>
+                <a href="/logout" type = 'button'>Logout</a>
+            </div>
+
+
+
+            <div class='travel_info'>
+
+                <h1>{{trip.destination}}</h1>
+
+
+                <p>Planned by: {{trip.primaryuser.first_name}}</p>
+                <p>Plans: {{trip.description}}</p>
+                <p>Travel Date START: {{trip.date_start}}</p>
+                <p>Travel Date END: {{trip.date_end}}</p>
+
+            </div>
+
+
+
+
+            
+            <div class ='buddies'>
+                <h3>Other users' joining the trip:</h3>
+
+                {% for user in trip_users %}
+
+                    {% if user !=  trip.user %}
+
+                        <p>{{user.name}}</p>
+
+                    {%endif%}
+
+                {% endfor %}
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </body>
+</html>
